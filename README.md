@@ -35,6 +35,8 @@
 
 ### Решение 3
 
+<img src = "img/cont_prometheus.png" width = 100%>
+
 ### Задание 4
 
 Выполните действия:
