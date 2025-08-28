@@ -107,7 +107,7 @@ Docker Compose — это инструмент для автоматизации
 
 <img src = "img/docker_compose_yml_1.png" width = 100%>
 
-<img src = "img/docker_compose_yml_2.png" width = 100%>
+<img src = "img/docker_compose_yml2.png" width = 100%>
 
 ### Задание 8
 
