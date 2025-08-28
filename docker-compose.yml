@@ -1,11 +1,11 @@
-version: '3'
+#version: '3'
 services:
   prometheus:
     image: prom/prometheus:latest
     container_name: zolotorevnd-netology-prometheus
     command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
     ports:
-      -9090:9090
+      - "9090:9090"
     volumes:
       - ./:/etc/prometheus
       - prometheus-data:/prometheus
@@ -16,19 +16,37 @@ services:
     image: prom/pushgateway:latest
     container_name: zolotorevnd-netology-pushgateway
     ports:
-      -9091:9091
+      - "9091:9091"
     networks:
-      - zolotorevnd-netology-hw
+      - zolotorevnd-my-netology-hw
     depends_on:
       - prometheus
     restart: unless-stopped
+  grafana:
+    image: grafana/grafana
+    container_name: zolotorevnd-netology-grafana
+    environment:
+      GF_PATHS_CONFIG: /etc/grafana/custom.ini
+    ports:
+      - "80:3000"
+    volumes:
+      - ./:/etc/grafana
+      - grafana-data:/var/lib/grafana
+    networks:
+      - zolotorevnd-my-netology-hw
+    depends_on:
+      - pushgateway
+    restart: unless-stopped
+
 
 volumes:
-  prometheus-data: 
+  prometheus-data:
+  grafana-data:
 networks:
   zolotorevnd-my-netology-hw:
     driver:  bridge
     ipam:
       config:
         - subnet: 10.5.0.0/16
+          
 
